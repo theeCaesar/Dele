@@ -3,6 +3,6 @@ import { deleteUser } from "../controllers/usersController.js";
 
 const userRouter = Router();
 
-userRouter.delete("/:num", deleteUser); //* app
+userRouter.delete("/", deleteUser); //* app
 
 export default userRouter;
