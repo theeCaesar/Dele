@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Deletion Request/Rehla</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-y: auto;
+        max-height: 100vh;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-top: 0;
+        font-size: 24px;
+      }
+
+      p {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #ff4d4d;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #ff3333;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          align-items: flex-start;
+          padding: 10px;
+        }
+
+        .container {
+          padding: 15px;
+          box-shadow: none;
+          border-radius: 0;
+          height: auto;
+          max-height: none;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        p {
+          font-size: 12px;
+        }
+
+        input[type="submit"] {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>RehlaIQ</h1>
+      <h1>Data Deletion Request and User Rights</h1>
+      <p>
+        As a user, you have certain rights regarding your personal data. You
+        have the right to access, rectify, object to, or erase the data
+        maintained by us. If you wish to request the deletion of your personal
+        data, please follow the steps below:
+      </p>
+      <p>
+        1. In-App Request: To initiate the data deletion request, you can fill
+        out the request form through the 'Initiate Account Deletion' option
+        within the app.
+      </p>
+      <p>
+        2. Google Play Store: Alternatively, you can find the request form in
+        the data deletion section of the Google Play Store.
+      </p>
+      <p>
+        Once you have submitted the request, our team will verify it
+        accordingly. Upon successful verification, your account and all
+        associated data will be permanently deleted within 90 days, ensuring the
+        complete removal of your information from our systems.
+      </p>
+      <p>
+        <strong>Read Our Privacy Policy to Understand Data Use</strong>
+      </p>
+      <p>
+        We take our users' privacy seriously and are committed to protecting
+        their personal information. To better understand how your data is used
+        by us or our app, we encourage you to read our privacy policy. Our
+        policy provides a detailed explanation of the types of data we collect,
+        how we use it, and who we share it with. We also outline the measures we
+        take to ensure the security and confidentiality of your information.
+      </p>
+      <p>
+        By familiarizing yourself with our privacy policy, you can be assured
+        that your personal information is being handled in a responsible and
+        transparent manner. If you have any questions or concerns about our
+        policy or how your data is being used, please do not hesitate to contact
+        us. We value your trust and appreciate the opportunity to serve you.
+      </p>
+
+      <form onsubmit="handleDeleteRequest(event)">
+        <input
+          type="text"
+          name="userId"
+          placeholder="Enter your phone number"
+          required
+        />
+        <textarea
+          name="reason"
+          placeholder="Reason for data deletion"
+          rows="4"
+          required
+        ></textarea>
+        <input type="submit" value="Submit Deletion Request" />
+      </form>
+    </div>
+
+    <script>
+      function handleDeleteRequest(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData).toString();
+
+        fetch(`user?${params}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert("Deletion request submitted successfully.");
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert(
+              "There was an error submitting your request. Please try again."
+            );
+          });
+      }
+    </script>
+  </body>
+</html>

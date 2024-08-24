@@ -1,0 +1,7 @@
+{
+    "Template": {
+        "TamplateName": "AWS-SES-HTML-t1",
+        "SubjectPart": "AWS SES test HTML Template",
+        "HtmlPart": ""
+    }
+}
