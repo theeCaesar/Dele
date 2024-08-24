@@ -148,7 +148,7 @@
       <form onsubmit="handleDeleteRequest(event)">
         <input
           type="text"
-          name="userId"
+          name="num"
           placeholder="Enter your phone number"
           required
         />
@@ -170,7 +170,7 @@
         const formData = new FormData(form);
         const params = new URLSearchParams(formData).toString();
 
-        fetch(`user/?${params}`, {
+        fetch(`user/${num.num}`, {
           method: "DELETE",
         })
           .then((response) => response.json())
